@@ -44,7 +44,14 @@ class _Asiacelltate extends State<Asiacell> {
                   children: <Widget>[
                     GestureDetector(
                       onTap: () {
-                        Navigator.pushNamed(context, Korek.id);
+                        sendingBalanceControler.text = "";
+                        briBalanceController.text = "";
+                        contactNumberController.text = "";
+                        refillingBalancetextEditingController.text = "";
+
+//                        Navigator.pushNamed(context, Korek.id);
+
+                        Navigator.pushReplacementNamed(context, Korek.id);
                       },
                       child: Card(
                         elevation: 5.5,
@@ -85,7 +92,13 @@ class _Asiacelltate extends State<Asiacell> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        Navigator.pushNamed(context, Zain.id);
+                        sendingBalanceControler.text = "";
+                        briBalanceController.text = "";
+                        contactNumberController.text = "";
+                        refillingBalancetextEditingController.text = "";
+
+//                        Navigator.pushNamed(context, Zain.id);
+                        Navigator.pushReplacementNamed(context, Zain.id);
                       },
                       child: Card(
                         elevation: 5.5,
@@ -135,7 +148,7 @@ class _Asiacelltate extends State<Asiacell> {
                             RadioListTile(
                               subtitle: Text('نمونە: 456 123 0770'),
                               title: Text('0770'),
-                              value: '770',
+                              value: '0770',
                               groupValue: selectedGroup,
                               onChanged: (val) {
                                 setState(() {
@@ -149,7 +162,7 @@ class _Asiacelltate extends State<Asiacell> {
                                 title: Text('0771'),
                                 subtitle: Text('نمونە: 456 123 0771'),
                                 activeColor: Colors.blue,
-                                value: '771',
+                                value: '0771',
                                 groupValue: selectedGroup,
                                 onChanged: (val) {
                                   setState(() {
@@ -160,7 +173,7 @@ class _Asiacelltate extends State<Asiacell> {
                             RadioListTile(
                               subtitle: Text('نمونە: 456 123 0772'),
                               title: Text('0772'),
-                              value: '772',
+                              value: '0772',
                               groupValue: selectedGroup,
                               onChanged: (val) {
                                 setState(() {
@@ -173,7 +186,7 @@ class _Asiacelltate extends State<Asiacell> {
                             RadioListTile(
                               subtitle: Text('نمونە: 456 123 0773'),
                               title: Text('0773'),
-                              value: '773',
+                              value: '0773',
                               groupValue: selectedGroup,
                               onChanged: (val) {
                                 setState(() {
@@ -186,7 +199,7 @@ class _Asiacelltate extends State<Asiacell> {
                           ],
                         ),
                         TextField(
-                          controller: asiaSendingBalanceController,
+                          controller: sendingBalanceControler,
                           textAlign: TextAlign.center,
                           keyboardType: TextInputType.number,
                           decoration: DYARI_KRDNI_BRI_BALANS,
@@ -195,10 +208,10 @@ class _Asiacelltate extends State<Asiacell> {
                         OutlineButton.icon(
                           onPressed: () {
                             setState(() {
-                              briBalans = asiaSendingBalanceController.text;
+                              briBalans = sendingBalanceControler.text;
                             });
                             openContact(selectedGroup,
-                                KOREK_SENDING_BALANCE_CODE, briBalans);
+                                ASIA_SENDING_BALANCE_CODE, briBalans);
                           },
                           icon: Icon(Icons.contact_phone),
                           label: Text('ژمارەی کەسەکە هەڵبژێرە'),
@@ -206,7 +219,7 @@ class _Asiacelltate extends State<Asiacell> {
                         SIZED_BOX,
                         TextField(
                           textDirection: TextDirection.ltr,
-                          controller: asiaContactNumberController,
+                          controller: contactNumberController,
                           textAlign: TextAlign.center,
                           keyboardType: TextInputType.number,
                           decoration: NUSINI_ZHMARAY_KASAKA,

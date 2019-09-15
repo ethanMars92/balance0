@@ -29,7 +29,7 @@ class _KorekState extends State<Korek> {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
-        backgroundColor: Colors.blue[100],
+        backgroundColor: Colors.blue[300],
         appBar: AppBar(
           title: Text('باڵانسی کۆڕەك'),
           centerTitle: true,
@@ -65,7 +65,12 @@ class _KorekState extends State<Korek> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        Navigator.pushNamed(context, Asiacell.id);
+                        sendingBalanceControler.text = "";
+                        briBalanceController.text = "";
+                        contactNumberController.text = "";
+                        refillingBalancetextEditingController.text = "";
+                        // Navigator.pushNamed(context, Asiacell.id);
+                        Navigator.pushReplacementNamed(context, Asiacell.id);
                       },
                       child: Card(
                         elevation: 5.5,
@@ -86,7 +91,13 @@ class _KorekState extends State<Korek> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        Navigator.pushNamed(context, Zain.id);
+                        sendingBalanceControler.text = "";
+                        briBalanceController.text = "";
+                        contactNumberController.text = "";
+                        refillingBalancetextEditingController.text = "";
+//                        Navigator.pushNamed(context, Zain.id);
+//                        Navigator.popAndPushNamed(context, Zain.id);
+                        Navigator.pushReplacementNamed(context, Zain.id);
                       },
                       child: Card(
                         elevation: 5.5,
@@ -136,7 +147,7 @@ class _KorekState extends State<Korek> {
                             RadioListTile(
                               subtitle: Text('نمونە: 456 123 0750'),
                               title: Text('0750'),
-                              value: '750',
+                              value: '0750',
                               groupValue: selectedGroup,
                               onChanged: (val) {
                                 setState(() {
@@ -151,7 +162,7 @@ class _KorekState extends State<Korek> {
                                 title: Text('0751'),
                                 subtitle: Text('نمونە: 456 123 0751'),
                                 activeColor: Colors.blue,
-                                value: '751',
+                                value: '0751',
                                 groupValue: selectedGroup,
                                 onChanged: (val) {
                                   setState(() {
@@ -162,7 +173,7 @@ class _KorekState extends State<Korek> {
                           ],
                         ),
                         TextField(
-                          controller: korekBriBalanceController,
+                          controller: briBalanceController,
                           textAlign: TextAlign.center,
                           keyboardType: TextInputType.number,
                           decoration: DYARI_KRDNI_BRI_BALANS,
@@ -171,7 +182,7 @@ class _KorekState extends State<Korek> {
                         OutlineButton.icon(
                           onPressed: () {
                             setState(() {
-                              briBalans = korekBriBalanceController.text;
+                              briBalans = briBalanceController.text;
                             });
                             openContact(selectedGroup,
                                 KOREK_SENDING_BALANCE_CODE, briBalans);
@@ -182,7 +193,7 @@ class _KorekState extends State<Korek> {
                         SIZED_BOX,
                         TextField(
                           textDirection: TextDirection.ltr,
-                          controller: korekContactNumberController,
+                          controller: contactNumberController,
                           textAlign: TextAlign.center,
                           keyboardType: TextInputType.number,
                           decoration: NUSINI_ZHMARAY_KASAKA,

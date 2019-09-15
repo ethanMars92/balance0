@@ -44,7 +44,13 @@ class _Zaintate extends State<Zain> {
                   children: <Widget>[
                     GestureDetector(
                       onTap: () {
-                        Navigator.pushNamed(context, Korek.id);
+                        sendingBalanceControler.text = "";
+                        briBalanceController.text = "";
+                        contactNumberController.text = "";
+                        refillingBalancetextEditingController.text = "";
+
+//                        Navigator.pushNamed(context, Korek.id);
+                        Navigator.pushReplacementNamed(context, Korek.id);
                       },
                       child: Card(
                         elevation: 5.5,
@@ -67,7 +73,12 @@ class _Zaintate extends State<Zain> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        Navigator.pushNamed(context, Asiacell.id);
+                        sendingBalanceControler.text = "";
+                        briBalanceController.text = "";
+                        contactNumberController.text = "";
+                        refillingBalancetextEditingController.text = "";
+//                        Navigator.pushNamed(context, Asiacell.id);
+                        Navigator.pushReplacementNamed(context, Asiacell.id);
                       },
                       child: Card(
                         elevation: 5.5,
@@ -137,7 +148,7 @@ class _Zaintate extends State<Zain> {
                             RadioListTile(
                               subtitle: Text('نمونە: 456 123 0780'),
                               title: Text('0780'),
-                              value: '780',
+                              value: '0780',
                               groupValue: selectedGroup,
                               onChanged: (val) {
                                 setState(() {
@@ -151,7 +162,7 @@ class _Zaintate extends State<Zain> {
                                 title: Text('0781'),
                                 subtitle: Text('نمونە: 456 123 0781'),
                                 activeColor: Colors.blue,
-                                value: '781',
+                                value: '0781',
                                 groupValue: selectedGroup,
                                 onChanged: (val) {
                                   setState(() {
@@ -163,7 +174,7 @@ class _Zaintate extends State<Zain> {
                                 title: Text('0782'),
                                 subtitle: Text('نمونە: 456 123 0782'),
                                 activeColor: Colors.blue,
-                                value: '782',
+                                value: '0782',
                                 groupValue: selectedGroup,
                                 onChanged: (val) {
                                   setState(() {
@@ -175,7 +186,7 @@ class _Zaintate extends State<Zain> {
                                 title: Text('0783'),
                                 subtitle: Text('نمونە: 456 123 0783'),
                                 activeColor: Colors.blue,
-                                value: '783',
+                                value: '0783',
                                 groupValue: selectedGroup,
                                 onChanged: (val) {
                                   setState(() {
@@ -186,7 +197,7 @@ class _Zaintate extends State<Zain> {
                           ],
                         ),
                         TextField(
-                          controller: zainSendingBalanceController,
+                          controller: sendingBalanceControler,
                           textAlign: TextAlign.center,
                           keyboardType: TextInputType.number,
                           decoration: DYARI_KRDNI_BRI_BALANS,
@@ -195,7 +206,7 @@ class _Zaintate extends State<Zain> {
                         OutlineButton.icon(
                           onPressed: () {
                             setState(() {
-                              briBalans = zainSendingBalanceController.text;
+                              briBalans = sendingBalanceControler.text;
                             });
                             openContact(selectedGroup,
                                 KOREK_SENDING_BALANCE_CODE, briBalans);
@@ -206,7 +217,7 @@ class _Zaintate extends State<Zain> {
                         SIZED_BOX,
                         TextField(
                           textDirection: TextDirection.ltr,
-                          controller: zainContactNumberController,
+                          controller: contactNumberController,
                           textAlign: TextAlign.center,
                           keyboardType: TextInputType.number,
                           decoration: NUSINI_ZHMARAY_KASAKA,

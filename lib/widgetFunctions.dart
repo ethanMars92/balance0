@@ -7,15 +7,9 @@ import 'package:permission_handler/permission_handler.dart';
 
 TextEditingController refillingBalancetextEditingController =
     TextEditingController();
-TextEditingController korekSendingBalanceController = TextEditingController();
-TextEditingController korekBriBalanceController = TextEditingController();
-TextEditingController korekContactNumberController = TextEditingController();
-TextEditingController asiaSendingBalanceController = TextEditingController();
-TextEditingController asiaBriBalanceController = TextEditingController();
-TextEditingController asiaContactNumberController = TextEditingController();
-TextEditingController zainSendingBalanceController = TextEditingController();
-TextEditingController zainBriBalanceController = TextEditingController();
-TextEditingController zainContactNumberController = TextEditingController();
+TextEditingController sendingBalanceControler = TextEditingController();
+TextEditingController briBalanceController = TextEditingController();
+TextEditingController contactNumberController = TextEditingController();
 
 var selectedRadio = 0750;
 
@@ -108,7 +102,7 @@ Widget RAISEDBUTTON() {
 //                      Uri(scheme: 'tel', path: '$KOREK_BALANCE_CHECKER'),
 //                    )
 //                    ..startActivity().catchError((e) => print(e));
-      print(korekContactNumberController.text);
+      print(contactNumberController.text);
     },
     child: Text(
       'بنێرە',
@@ -118,8 +112,10 @@ Widget RAISEDBUTTON() {
 }
 
 ///krdnaway listi nawakan
-openContact(String numberCode, String sendingCode, String briBalance) async {
+Future openContact(
+    String numberCode, String sendingCode, String briBalance) async {
   String pureNumber;
+
   final NativeContactPicker _contactPicker = new NativeContactPicker();
   Contact _contact = await _contactPicker.selectContact();
   pureNumber = _contact.phoneNumber
@@ -127,9 +123,22 @@ openContact(String numberCode, String sendingCode, String briBalance) async {
       .replaceAll('+', "")
       .replaceAll('-', "");
 
-  if (pureNumber.length > 7) {
-    korekContactNumberController.text =
-        '$sendingCode${pureNumber.substring(pureNumber.length - 7)}*$briBalance$HASH_SIGN';
+  switch (sendingCode) {
+    case ASIA_SENDING_BALANCE_CODE:
+      if (pureNumber.length > 7) {
+        contactNumberController.text =
+            '$sendingCode$briBalance*$numberCode${pureNumber.substring(pureNumber.length - 7)}$HASH_SIGN';
+      }
+      break;
+    case KOREK_SENDING_BALANCE_CODE:
+      if (pureNumber.length > 7) {
+        contactNumberController.text =
+            '$sendingCode$numberCode${pureNumber.substring(pureNumber.length - 7)}*$briBalance$HASH_SIGN';
+        break;
+      }
+//  if (pureNumber.length > 7) {
+//    contactNumberController.text =
+//        '$sendingCode$numberCode${pureNumber.substring(pureNumber.length - 7)}*$briBalance$HASH_SIGN';
   }
 }
 
@@ -188,3 +197,5 @@ void refillingBalance(String str) {
           '$ZAIN_BALANCE_REFFILING_CODE${refillingBalancetextEditingController.text}$HASH_SIGN');
   }
 }
+
+//TODO: دەبێت ئاگاداری زیاد بکەم بۆ دڵنیا کردنەوە لە ناردنی باڵانسەکە
