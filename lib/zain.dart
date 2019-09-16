@@ -19,7 +19,7 @@ class _Zaintate extends State<Zain> {
     // TODO: implement initState
     super.initState();
     checkingAndRequestingPermission();
-    selectedGroup = '780';
+    selectedGroup = '0780';
     briBalans = '1000';
   }
 
@@ -49,7 +49,6 @@ class _Zaintate extends State<Zain> {
                         contactNumberController.text = "";
                         refillingBalancetextEditingController.text = "";
 
-//                        Navigator.pushNamed(context, Korek.id);
                         Navigator.pushReplacementNamed(context, Korek.id);
                       },
                       child: Card(
@@ -197,23 +196,14 @@ class _Zaintate extends State<Zain> {
                           ],
                         ),
                         TextField(
-                          controller: sendingBalanceControler,
+                          controller: briBalanceController,
                           textAlign: TextAlign.center,
                           keyboardType: TextInputType.number,
                           decoration: DYARI_KRDNI_BRI_BALANS,
                         ),
                         SIZED_BOX,
-                        OutlineButton.icon(
-                          onPressed: () {
-                            setState(() {
-                              briBalans = sendingBalanceControler.text;
-                            });
-                            openContact(selectedGroup,
-                                KOREK_SENDING_BALANCE_CODE, briBalans);
-                          },
-                          icon: Icon(Icons.contact_phone),
-                          label: Text('ژمارەی کەسەکە هەڵبژێرە'),
-                        ),
+                        halbzhardniListiNawakanUNardn(
+                            briBalans, selectedGroup, context),
                         SIZED_BOX,
                         TextField(
                           textDirection: TextDirection.ltr,
@@ -223,7 +213,7 @@ class _Zaintate extends State<Zain> {
                           decoration: NUSINI_ZHMARAY_KASAKA,
                         ),
                         SIZED_BOX,
-                        RAISEDBUTTON(),
+                        RAISEDBUTTON(context),
                       ],
                     ),
                   ),

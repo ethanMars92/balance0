@@ -199,23 +199,14 @@ class _Asiacelltate extends State<Asiacell> {
                           ],
                         ),
                         TextField(
-                          controller: sendingBalanceControler,
+                          controller: briBalanceController,
                           textAlign: TextAlign.center,
                           keyboardType: TextInputType.number,
                           decoration: DYARI_KRDNI_BRI_BALANS,
                         ),
                         SIZED_BOX,
-                        OutlineButton.icon(
-                          onPressed: () {
-                            setState(() {
-                              briBalans = sendingBalanceControler.text;
-                            });
-                            openContact(selectedGroup,
-                                ASIA_SENDING_BALANCE_CODE, briBalans);
-                          },
-                          icon: Icon(Icons.contact_phone),
-                          label: Text('ژمارەی کەسەکە هەڵبژێرە'),
-                        ),
+                        halbzhardniListiNawakanUNardn(
+                            briBalans, selectedGroup, context),
                         SIZED_BOX,
                         TextField(
                           textDirection: TextDirection.ltr,
@@ -225,7 +216,7 @@ class _Asiacelltate extends State<Asiacell> {
                           decoration: NUSINI_ZHMARAY_KASAKA,
                         ),
                         SIZED_BOX,
-                        RAISEDBUTTON(),
+                        RAISEDBUTTON(context),
                       ],
                     ),
                   ),
