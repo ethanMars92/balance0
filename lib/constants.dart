@@ -18,6 +18,11 @@ const ZAIN_BALANCE_CHECKER = "*200#";
 // bo balance nardn am koda pewista {.. *215* zhmaray talafon *1000 # ..}
 const KOREK_SENDING_BALANCE_CODE = '*215*';
 const ASIA_SENDING_BALANCE_CODE = '*123*';
+// Variablakan
+bool isContactFieldEnable = false;
+String selectedGroup;
+String sliderValue;
+String briBalans;
 
 //..........
 //..........
@@ -77,6 +82,16 @@ const NUSINI_ZHMARAY_KASAKA = InputDecoration(
   helperText: 'ئەگەر ژمارەی کەسەکەت لابێت، پێویست ناکات ژمارەکەی بنوسیت',
   focusedBorder: FOCUSED_BORDER_STYLE,
   enabledBorder: ENABLED_BORDER_STYLE,
+  disabledBorder: OutlineInputBorder(
+    borderRadius: BorderRadius.all(
+      Radius.circular(5),
+    ),
+    borderSide: BorderSide(
+      width: 1,
+      color: Colors.grey,
+      style: BorderStyle.solid,
+    ),
+  ),
 );
 
 /// RoundedRectangleBorder

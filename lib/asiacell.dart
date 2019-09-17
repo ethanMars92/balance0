@@ -12,9 +12,6 @@ class Asiacell extends StatefulWidget {
 }
 
 class _Asiacelltate extends State<Asiacell> {
-  String selectedGroup;
-  String briBalans;
-
   void initState() {
     // TODO: implement initState
     super.initState();
@@ -205,8 +202,8 @@ class _Asiacelltate extends State<Asiacell> {
                           decoration: DYARI_KRDNI_BRI_BALANS,
                         ),
                         SIZED_BOX,
-                        halbzhardniListiNawakanUNardn(
-                            briBalans, selectedGroup, context),
+                        halbzhardniListiNawakanUNardn(briBalans, selectedGroup,
+                            context, ASIA_SENDING_BALANCE_CODE),
                         SIZED_BOX,
                         TextField(
                           textDirection: TextDirection.ltr,

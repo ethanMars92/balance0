@@ -13,10 +13,6 @@ class Korek extends StatefulWidget {
 }
 
 class _KorekState extends State<Korek> {
-  String selectedGroup;
-  String briBalans;
-  String sliderValue;
-
   void initState() {
     // TODO: implement initState
     super.initState();
@@ -184,9 +180,22 @@ class _KorekState extends State<Korek> {
                           ),
                           SIZED_BOX,
                           halbzhardniListiNawakanUNardn(
-                              briBalans, selectedGroup, context),
+                              briBalans,
+                              selectedGroup,
+                              context,
+                              KOREK_SENDING_BALANCE_CODE),
+                          SIZED_BOX,
+                          RaisedButton(
+                            onPressed: () {
+                              setState(() {
+                                isContactFieldEnable = true;
+                              });
+                            },
+                            child: Text('ژمارەکەت لانیە ؟'),
+                          ),
                           SIZED_BOX,
                           TextField(
+                            enabled: isContactFieldEnable,
                             textDirection: TextDirection.ltr,
                             controller: contactNumberController,
                             textAlign: TextAlign.center,

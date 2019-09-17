@@ -11,9 +11,6 @@ TextEditingController refillingBalancetextEditingController =
 TextEditingController sendingBalanceControler = TextEditingController();
 TextEditingController briBalanceController = TextEditingController();
 TextEditingController contactNumberController = TextEditingController();
-String briBalans;
-
-var selectedRadio = 0750;
 
 /// am functiona be kesha esh akat
 Widget refillingCardWidget(String provider) {
@@ -64,6 +61,8 @@ Widget refillingCardWidget(String provider) {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 RaisedButton(
+                  disabledColor: Colors.grey,
+                  disabledTextColor: Colors.white,
                   onPressed: (refillingBalancetextEditingController
                               .text.isEmpty ||
                           refillingBalancetextEditingController.text.length <
@@ -105,6 +104,7 @@ Widget refillingCardWidget(String provider) {
 /// dugmay nardn
 Widget RAISEDBUTTON(context) {
   return RaisedButton(
+    disabledTextColor: Colors.white,
     onPressed: briBalanceController.text.isEmpty
         ? null
         : () {
@@ -126,6 +126,21 @@ Widget RAISEDBUTTON(context) {
 ///krdnaway listi nawakan
 //eshakat bo krdnawa u nishandani contact list u keshay nya
 
+Widget halbzhardniListiNawakanUNardn(
+    String briBalance, String selectedGroup, context, String sendingCode) {
+  return OutlineButton.icon(
+    onPressed: briBalanceController.text.isEmpty
+        ? null
+        : () {
+            briBalans = briBalanceController.text;
+
+            openContact(selectedGroup, sendingCode, briBalans, context);
+          },
+    icon: Icon(Icons.contact_phone),
+    label: Text('ژمارەی کەسەکە هەڵبژێرە'),
+  );
+}
+
 Future openContact(
     String numberCode, String sendingCode, String briBalance, context) async {
   String _pureNumber;
@@ -139,30 +154,11 @@ Future openContact(
       .replaceAll('-', "");
   _contactName = _contact.fullName;
 
-//  switch (sendingCode) {
-//    case ASIA_SENDING_BALANCE_CODE:
-//      if (_pureNumber.length > 7) {
-//        contactNumberController.text =
-//            '$sendingCode$briBalance*$numberCode${_pureNumber.substring(_pureNumber.length - 7)}$HASH_SIGN';
-//      }
-//      break;
-//    case KOREK_SENDING_BALANCE_CODE:
-//      if (_pureNumber.length > 7) {
-//        contactNumberController.text =
-//            '$sendingCode$numberCode${_pureNumber.substring(_pureNumber.length - 7)}*$briBalance$HASH_SIGN';
-//        break;
-//      }
-//
-//      if (_pureNumber.length > 7) {
-//        contactNumberController.text =
-//            '$sendingCode$numberCode${_pureNumber.substring(_pureNumber.length - 7)}*$briBalance$HASH_SIGN';
-//      }
-//  }
   alert(
       context, numberCode, sendingCode, briBalance, _pureNumber, _contactName);
 }
 
-// Alert function babe kesha esh akat
+// !Alert function babe kesha esh akat
 //TODO tanha design mawa agar wistm bikam
 alert(context, String numberCode, String sendingCode, String briBalance,
     String pureNumber, String contactName) {
@@ -179,12 +175,20 @@ alert(context, String numberCode, String sendingCode, String briBalance,
             actions: <Widget>[
               FlatButton(
                 onPressed: () {
-                  // lagal click krdn lera abet balansaka bnerdret
+                  /// lagal click krdn lera abet balansaka bnerdret
                   switch (sendingCode) {
                     case ASIA_SENDING_BALANCE_CODE:
                       if (pureNumber.length > 7) {
                         contactNumberController.text =
                             '$sendingCode$briBalance*$numberCode${pureNumber.substring(pureNumber.length - 7)}$HASH_SIGN';
+                        intents.Intent()
+                          ..setAction(actions.Action.ACTION_CALL)
+                          ..setData(
+                            Uri(
+                                scheme: 'tel',
+                                path: contactNumberController.text),
+                          )
+                          ..startActivity().catchError((e) => print(e));
                         print(contactNumberController.text);
                       }
                       break;
@@ -192,6 +196,15 @@ alert(context, String numberCode, String sendingCode, String briBalance,
                       if (pureNumber.length > 7) {
                         contactNumberController.text =
                             '$sendingCode$numberCode${pureNumber.substring(pureNumber.length - 7)}*$briBalance$HASH_SIGN';
+
+                        intents.Intent()
+                          ..setAction(actions.Action.ACTION_CALL)
+                          ..setData(
+                            Uri(
+                                scheme: 'tel',
+                                path: contactNumberController.text),
+                          )
+                          ..startActivity().catchError((e) => print(e));
                         print(contactNumberController.text);
                         break;
                       }
@@ -269,31 +282,4 @@ void refillingBalance(String str) {
   }
 }
 
-Widget halbzhardniListiNawakanUNardn(
-    String briBalance, String selectedGroup, context) {
-  return OutlineButton.icon(
-    onPressed: briBalanceController.text.isEmpty
-        ? null
-        : () {
-            briBalans = briBalanceController.text;
-
-            openContact(
-                selectedGroup, KOREK_SENDING_BALANCE_CODE, briBalans, context);
-          },
-    icon: Icon(Icons.contact_phone),
-    label: Text('ژمارەی کەسەکە هەڵبژێرە'),
-  );
-}
-
 //TODO lawanaya la dahatu functionek zyad bkam bo nardnni balance bo Zain ba SMS
-
-toastMessege() {
-  Fluttertoast.showToast(
-      msg: "This is Center Short Toast",
-      toastLength: Toast.LENGTH_SHORT,
-      gravity: ToastGravity.CENTER,
-      timeInSecForIos: 1,
-      backgroundColor: Colors.red,
-      textColor: Colors.white,
-      fontSize: 16.0);
-}

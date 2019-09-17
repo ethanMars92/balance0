@@ -1,8 +1,8 @@
 import 'package:balance/asiacell.dart';
+import 'package:balance/constants.dart';
 import 'package:balance/korek.dart';
 import 'package:flutter/material.dart';
 import 'widgetFunctions.dart';
-import 'constants.dart';
 
 class Zain extends StatefulWidget {
   static const id = 'Zain';
@@ -12,9 +12,6 @@ class Zain extends StatefulWidget {
 }
 
 class _Zaintate extends State<Zain> {
-  String selectedGroup;
-  String briBalans;
-
   void initState() {
     // TODO: implement initState
     super.initState();
@@ -203,7 +200,7 @@ class _Zaintate extends State<Zain> {
                         ),
                         SIZED_BOX,
                         halbzhardniListiNawakanUNardn(
-                            briBalans, selectedGroup, context),
+                            briBalans, selectedGroup, context, "Zain"),
                         SIZED_BOX,
                         TextField(
                           textDirection: TextDirection.ltr,
