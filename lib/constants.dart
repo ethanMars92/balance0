@@ -18,6 +18,7 @@ const ZAIN_BALANCE_CHECKER = "*200#";
 // bo balance nardn am koda pewista {.. *215* zhmaray talafon *1000 # ..}
 const KOREK_SENDING_BALANCE_CODE = '*215*';
 const ASIA_SENDING_BALANCE_CODE = '*123*';
+const ZAIN_SENDING_BALANCE_CODE = '21112';
 // Variablakan
 bool isContactFieldEnable = false;
 String selectedGroup;
@@ -88,7 +89,7 @@ const NUSINI_ZHMARAY_KASAKA = InputDecoration(
     ),
     borderSide: BorderSide(
       width: 1,
-      color: Colors.grey,
+      color: Colors.blueGrey,
       style: BorderStyle.solid,
     ),
   ),

@@ -27,7 +27,10 @@ class _KorekState extends State<Korek> {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: SafeArea(
-        minimum: EdgeInsets.all(0),
+        top: true,
+        bottom: true,
+        left: true,
+        right: true,
         child: Scaffold(
           backgroundColor: Colors.blue[300],
           appBar: AppBar(

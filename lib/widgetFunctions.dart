@@ -162,6 +162,7 @@ Future openContact(
 //TODO tanha design mawa agar wistm bikam
 alert(context, String numberCode, String sendingCode, String briBalance,
     String pureNumber, String contactName) {
+  String phoneNumber;
   showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -179,14 +180,12 @@ alert(context, String numberCode, String sendingCode, String briBalance,
                   switch (sendingCode) {
                     case ASIA_SENDING_BALANCE_CODE:
                       if (pureNumber.length > 7) {
-                        contactNumberController.text =
+                        phoneNumber =
                             '$sendingCode$briBalance*$numberCode${pureNumber.substring(pureNumber.length - 7)}$HASH_SIGN';
                         intents.Intent()
                           ..setAction(actions.Action.ACTION_CALL)
                           ..setData(
-                            Uri(
-                                scheme: 'tel',
-                                path: contactNumberController.text),
+                            Uri(scheme: 'tel', path: phoneNumber),
                           )
                           ..startActivity().catchError((e) => print(e));
                         print(contactNumberController.text);
@@ -194,20 +193,18 @@ alert(context, String numberCode, String sendingCode, String briBalance,
                       break;
                     case KOREK_SENDING_BALANCE_CODE:
                       if (pureNumber.length > 7) {
-                        contactNumberController.text =
+                        phoneNumber =
                             '$sendingCode$numberCode${pureNumber.substring(pureNumber.length - 7)}*$briBalance$HASH_SIGN';
 
                         intents.Intent()
                           ..setAction(actions.Action.ACTION_CALL)
                           ..setData(
-                            Uri(
-                                scheme: 'tel',
-                                path: contactNumberController.text),
+                            Uri(scheme: 'tel', path: phoneNumber),
                           )
                           ..startActivity().catchError((e) => print(e));
                         print(contactNumberController.text);
-                        break;
                       }
+                      break;
                   }
                   Navigator.pop(context);
                 },
